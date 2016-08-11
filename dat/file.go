@@ -1,8 +1,12 @@
 package dat
 
+import (
+	bin "github.com/go-otserv/encoding/binary"
+)
+
 // File is wrapper for reading .dat files
 type File struct {
-	BufferedBinaryFile
+	bin.BufferedBinaryFile
 	Signature       uint32
 	ContentRevision uint16
 	Items           []*Thing
