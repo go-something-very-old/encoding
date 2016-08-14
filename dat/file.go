@@ -6,7 +6,7 @@ import (
 
 // File is wrapper for reading .dat files
 type File struct {
-	bin.BufferedBinaryFile
+	bin.BufferedFile
 	Signature       uint32
 	ContentRevision uint16
 	Items           []*Thing
@@ -23,7 +23,7 @@ type File struct {
 func Open(path string) (*File, error) {
 	var itemsCount, outfitsCount, effectsCount, missilesCount uint16
 
-	buffh, err := OpenBufferedBinaryFile(path)
+	buffh, err := bin.OpenBufferedFile(path)
 	if err != nil {
 		return nil, err
 	}

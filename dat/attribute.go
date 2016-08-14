@@ -3,6 +3,8 @@ package dat
 import (
 	"encoding/xml"
 	"fmt"
+
+	bin "github.com/go-otserv/encoding/binary"
 )
 
 // Attribute is common interface for all Item attributes
@@ -659,7 +661,7 @@ func NewDeprecated() *Deprecated {
 
 // DeserializeAttribute reads from `datfh` and creates proper attribute based
 // on given `attrOp`
-func deserializeAttribute(attrOp uint8, datfh BinaryReader) (Attribute, error) {
+func deserializeAttribute(attrOp uint8, datfh bin.BinaryReader) (Attribute, error) {
 	var err error
 	var val, val2 uint16
 
