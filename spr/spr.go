@@ -9,7 +9,7 @@ import (
 
 // File is wrapper for reading .spr file
 type File struct {
-	bin.BinaryFile
+	bin.File
 	Signature       uint32
 	SpritesCount    uint32
 	SpriteOffset    int
@@ -19,7 +19,7 @@ type File struct {
 
 // Open opens given file for reading
 func Open(path string, hasAplhaChannel bool) (*File, error) {
-	fh, err := bin.OpenBinaryFile(path)
+	fh, err := bin.OpenFile(path)
 	if err != nil {
 		return nil, err
 	}
