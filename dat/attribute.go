@@ -661,7 +661,7 @@ func NewDeprecated() *Deprecated {
 
 // DeserializeAttribute reads from `datfh` and creates proper attribute based
 // on given `attrOp`
-func deserializeAttribute(attrOp uint8, datfh bin.BinaryReader) (Attribute, error) {
+func deserializeAttribute(attrOp uint8, datfh bin.Reader) (Attribute, error) {
 	var err error
 	var val, val2 uint16
 

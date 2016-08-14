@@ -1,6 +1,10 @@
 package dat
 
-import "fmt"
+import (
+	"fmt"
+
+	bin "github.com/go-otserv/encoding/binary"
+)
 
 // SpriteGroup holds information about single group of sprites. One item might
 // have one or more SpriteGroup assigned
@@ -28,7 +32,7 @@ type AnimationPhase struct {
 	FrameB uint32
 }
 
-func deserializeSpriteGroup(typ string, datfh BinaryReader) (*SpriteGroup, error) {
+func deserializeSpriteGroup(typ string, datfh bin.Reader) (*SpriteGroup, error) {
 	var err error
 	var sprID uint32
 	var animPhases uint8

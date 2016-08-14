@@ -1,6 +1,10 @@
 package dat
 
-import "encoding/xml"
+import (
+	"encoding/xml"
+
+	bin "github.com/go-otserv/encoding/binary"
+)
 
 // Thing holds thing information: ID, type, attributes and sprites information
 type Thing struct {
@@ -25,7 +29,7 @@ func NewThing(id uint16, typ string) *Thing {
 }
 
 // DeserializeThing parses .dat file and creates new Thing instance
-func DeserializeThing(id uint16, typ string, datfh BinaryReader) (*Thing, error) {
+func DeserializeThing(id uint16, typ string, datfh bin.Reader) (*Thing, error) {
 	var err error
 	thing := NewThing(id, typ)
 	if err = thing.deserializeAttributes(datfh); err != nil {
@@ -37,7 +41,7 @@ func DeserializeThing(id uint16, typ string, datfh BinaryReader) (*Thing, error)
 	return thing, nil
 }
 
-func (thing *Thing) deserializeAttributes(datfh BinaryReader) error {
+func (thing *Thing) deserializeAttributes(datfh bin.Reader) error {
 	var err error
 	var attrOp uint8
 	var attr Attribute
@@ -56,7 +60,7 @@ func (thing *Thing) deserializeAttributes(datfh BinaryReader) error {
 	return nil
 }
 
-func (thing *Thing) deserializeSpritesInfo(datfh BinaryReader) error {
+func (thing *Thing) deserializeSpritesInfo(datfh bin.Reader) error {
 	var err error
 	var groupsCount uint8
 	var sprGr *SpriteGroup
